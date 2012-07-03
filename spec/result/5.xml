@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script>
+      alert('Wassup!');
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>
+          Key
+        </th>
+        <th>
+          Value
+        </th>
+      </tr>
+      <tr>
+        <td>
+          Foo
+        </td>
+        <td>
+          Bar
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

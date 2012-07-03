@@ -1,9 +1,27 @@
-require 'rexml/document'
+module Timl
+  # Dynamically defines a tag method so we don't have to hit method_missing all
+  # the time.
+  def self.define_tags *args
+    args.each do |tag|
+      self.class.instance_eval do
+        define_method tag do |*args, &block|
+          @@out ||= ""
+          @@out <<  "<#{tag.to_s}#{parameterize args.first}>"
+          result = module_eval(&block)
+          @@out <<  result unless result.nil? || result.start_with?('<')
+          @@out <<  "</#{tag.to_s}>"
+          @@out
+        end
+      end
+    end
+  end
 
-class Timl
+  # Define tags to override existing methods that can mess with the DSL.
+  define_tags :p
+
   def self.start format = :pretty, &block
     @@out = ""
-    class_eval &block
+    module_eval &block
     case format
     when :pretty
       doc = REXML::Document.new(@@out)
@@ -18,11 +36,8 @@ class Timl
   end
 
   def self.method_missing name, *args, &block
-    @@out <<  "<#{name}#{parameterize args.first}>"
-    result = block_given? ? class_eval(&block) : ''
-    @@out <<  result unless result.start_with? '<'
-    @@out <<  "</#{name}>"
-    @@out
+    define_tags name
+    method(name).call args, &block
   end
 
   private
@@ -38,19 +53,3 @@ class Timl
     @@out << '<?xml version="1.0" encoding="UTF-8" ?>'
   end
 end
-
-
-o = Timl.start do
-  html do
-    head do
-      script src: "http://example.com"
-    end
-
-    div id: "test", class: "fake" do
-      h1(class: "bold") { "Testing" }
-      h2 { "Still testing" }
-    end
-  end
-end
-
-puts o

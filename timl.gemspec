@@ -1,7 +1,8 @@
+require File.dirname(__FILE__) + '/lib/timl'
+
 Gem::Specification.new do |s|
   s.name = %q{timl}
-  s.version = "0.1"
-  s.date = %q{2012-07-03}
+  s.version = Timl::VERSION
   s.authors = ["Sam Rose"]
   s.email = %q{samwho@lbak.co.uk}
   s.summary = %q{A Tiny XML building library, akin to builder.}
@@ -10,6 +11,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.2'
   s.license = 'MIT'
 
-  # Add all files to the files parameter.
-  s.files = Dir["**/*.*"]
+  # Add all files in git to the files parameter.
+  s.files = `git ls-files`.split /\n/
 end
