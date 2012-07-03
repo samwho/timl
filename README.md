@@ -6,6 +6,12 @@ to be a little bit cluttered and hard to digest at first glance.
 Timl aims to be very small and very intuitive to use. The main code that does
 all of the heavy lifting is less than 100 lines of code, including comments.
 
+### Build statuses
+
+Develop: [![Build Status](https://secure.travis-ci.org/samwho/timl.png?branch=develop)](http://travis-ci.org/samwho/timl)
+
+Master: [![Build Status](https://secure.travis-ci.org/samwho/timl.png?branch=master)](http://travis-ci.org/samwho/timl)
+
 # Installation
 
 The installation is a standard RubyGem installation:
