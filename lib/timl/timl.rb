@@ -5,7 +5,6 @@ module Timl
     args.each do |tag|
       self.class.instance_eval do
         define_method tag do |*args, &block|
-          @@out ||= ""
           @@out <<  "<#{tag.to_s}#{parameterize args.first}>"
           result = module_eval(&block)
           @@out <<  result unless result.nil? || result.start_with?('<')
