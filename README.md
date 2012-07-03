@@ -26,6 +26,8 @@ this means to you, the user, is that you can use any XML tag you want as part of
 the DSL. Let's see an example:
 
 ``` ruby
+require 'timl'
+
 Timl.start do
   body do
     p { "This is a paragraph tag." }
@@ -51,6 +53,8 @@ The above example is a bit simple. What is you want attributes in your XML? Timl
 can do that too:
 
 ``` ruby
+require 'timl'
+
 Timl.start do
   div id: "content" do
     p style: "font-weight: bold" do
@@ -77,6 +81,8 @@ If you want to include XML and HTML header/doctype information, that's possible
 as well:
 
 ``` ruby
+require 'timl'
+
 Timl.start do
   xml_header
 end
@@ -91,6 +97,8 @@ Translates to:
 If you want to use a different encoding, that's possible too:
 
 ``` ruby
+require 'timl'
+
 Timl.start do
   xml_header encoding: "UTF-16"
 end
@@ -107,6 +115,8 @@ Translates to:
 The HTML doctype is inserted in a very similar way:
 
 ``` ruby
+require 'timl'
+
 Timl.start do
   html5_doctype
 end
