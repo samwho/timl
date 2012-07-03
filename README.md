@@ -54,7 +54,7 @@ can do that too:
 Timl.start do
   div id: "content" do
     p style: "font-weight: bold" do
-      "This is a bold paragraph.
+      "This is a bold paragraph."
     end
   end
 end
